@@ -11,7 +11,7 @@
  * Plugin Name:       SlideCraft – Responsive Slider & Carousel
  * Plugin URI:        https://wordpress.org/plugins/wp-smart-flexslider/
  * Description:       Build beautiful, fast and accessible sliders and carousels with a visual builder: hero banners, product and post carousels, testimonials, logo tickers, galleries and video slides.
- * Version:           3.0.0-dev
+ * Version:           3.0.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Rajan V
@@ -19,14 +19,13 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       wp-smart-flexslider
- * Domain Path:       /languages
  */
 
 namespace SlideCraft;
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SLIDECRAFT_VERSION', '3.0.0-dev' );
+define( 'SLIDECRAFT_VERSION', '3.0.0' );
 define( 'SLIDECRAFT_FILE', __FILE__ );
 define( 'SLIDECRAFT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SLIDECRAFT_URL', plugin_dir_url( __FILE__ ) );

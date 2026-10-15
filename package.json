@@ -1,6 +1,6 @@
 {
   "name": "wp-smart-flexslider",
-  "version": "3.0.0-dev",
+  "version": "3.0.0",
   "private": true,
   "description": "SlideCraft – responsive slider and carousel builder (admin app, block and front-end runtime).",
   "license": "GPL-2.0-or-later",

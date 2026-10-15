@@ -72,12 +72,11 @@ final class Migrator {
 		$map      = self::map();
 		$posts    = get_posts(
 			array(
-				'post_type'        => self::LEGACY_POST_TYPE,
-				'post_status'      => array( 'publish', 'draft', 'pending', 'private', 'future' ),
-				'numberposts'      => -1,
-				'orderby'          => 'date',
-				'order'            => 'DESC',
-				'suppress_filters' => true,
+				'post_type'   => self::LEGACY_POST_TYPE,
+				'post_status' => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+				'numberposts' => -1,
+				'orderby'     => 'date',
+				'order'       => 'DESC',
 			)
 		);
 		$v1_posts = array();

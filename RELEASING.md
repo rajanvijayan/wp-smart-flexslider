@@ -23,6 +23,8 @@ Repository secrets (Settings → Secrets and variables → Actions):
    `trunk/readme.txt` straight away. If the new `Stable tag` does not exist in SVN yet, WordPress.org
    serves `trunk`, which still holds the previous release's code. Tagging first creates `tags/X.Y.Z`
    and updates `trunk` together; the later merge then has nothing left to deploy.
+   `assets.yml` also skips itself while the `Stable tag` is not in SVN, so merging an unreleased
+   version to `master` early is safe; tagging first is still the normal order.
 5. `deploy.yml` verifies the versions match, installs Composer dependencies, lints every shipped PHP file, builds the
    admin app, block and front-end runtime, syncs `trunk`,
    creates `tags/X.Y.Z`, updates `/assets` from `.wordpress-org/`, and attaches the ZIP to a GitHub

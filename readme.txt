@@ -1,87 +1,93 @@
-=== Plugin Name ===
+=== SlideCraft – Responsive Slider & Carousel ===
 Contributors: rajanit2000
-Tags: Bootstrap Flex Slider, Flex Slider, Bootstrap Slider, Responsive Slider, Slider, Bootstrap, Flexslider, Bootstrap Slider, Image Slider, carousel slider, carousel, bootsrtap carousel
-Requires at least: 3.0.1
-Tested up to: 4.8.1
-Stable tag: 4.3
+Tags: slider, carousel, slideshow, responsive slider, image slider
+Requires at least: 6.4
+Tested up to: 7.1
+Requires PHP: 7.4
+Stable tag: 3.0.0
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This is Bootstrap Flex Slider plugin. Its used for Bootstrap and Non Bootstrap themes 
+Fast, accessible sliders and carousels: hero banners, post and product carousels, galleries, testimonials and logo tickers.
 
 == Description ==
 
-This is Bootstrap Flex Slider plugin. Its used for Bootstrap v3.3.7x Themes. Its have admin controls options, Navigation and Directions options in admin panel. Now its also works not bootstrap themes 
+SlideCraft builds sliders and carousels that look good, load fast and work for everyone. Make a slider once and place it anywhere with the **SlideCraft Slider** block, the `[slidecraft]` shortcode or a PHP function.
 
-= Custom Options =
-	
-	1. Install Plugin
-	2. Add slider and use short code [display_flexslider id="SLIDER ID"]
+SlideCraft is the new version of **WP Smart Flexslider**. Your existing sliders are moved over automatically and your old shortcodes keep working.
 
-= Frequently Asked Questions =
+= Slider types and effects =
 
-1. Which version bootstrap theme required for this plugin?
+* Slider, carousel (several slides per view, rows, centred mode, free scrolling), gallery with thumbnails, and continuous ticker.
+* Slide, fade, coverflow, cube, flip, cards and creative transitions.
+* Horizontal or vertical, loop, random order, autoplay with a progress bar, keyboard, mousewheel and touch.
 
-	Bootstrap 3.3.7 or later
+= Slides and layers =
 
-2. Its required any JS or CSS file?
+* Image, video (YouTube, Vimeo or MP4), content, testimonial, logo and dynamic posts slides.
+* Image, colour, gradient or video backgrounds with a focal point, Ken Burns zoom and a colour overlay.
+* Heading, text, button, image and countdown layers on a nine-point grid, with per-device visibility and entrance animations.
+* Dynamic slides from posts, pages, custom post types or WooCommerce products, filtered by category, tag, featured or sticky.
 
-	No, Not needed. Its working on Bootstrap default JS and Css
-	
-	http://getbootstrap.com/javascript/#carousel
+= Design =
+
+* 12 starter templates: Hero Fade, Split Hero, Promo Countdown, Fullscreen Video, Blog Carousel, Product Showcase, Coverflow Portfolio, Cards Stack, Testimonials, Logo Ticker, News Ticker and Gallery + Thumbnails.
+* Height by aspect ratio, fixed pixels, viewport height or the first image.
+* Six arrow styles, bullets, fraction, progress bar or thumbnails.
+* Separate tablet and mobile settings for slides per view, gap, height, text size and arrows.
+
+= Fast and accessible =
+
+* About 32 KB of JavaScript (gzipped). Effects load only where they are used, and nothing loads on pages without a slider.
+* Space is reserved before images load, so the page doesn't jump. The first image loads with high priority and the rest lazy-load with responsive sizes.
+* Accessible carousel markup, a pause button whenever autoplay is on, pause on focus, keyboard support and reduced-motion support.
+* YouTube (no-cookie) and Vimeo (do not track) videos load only when their slide is shown.
 
 == Installation ==
 
-	Add this Short code [display_flexslider id="SLIDER ID"] from your theme or page
+1. In WordPress, go to **Plugins → Add New**, search for **SlideCraft**, then install and activate it.
+2. Open **SlideCraft** in the admin menu and create a slider, or start from a template.
+3. Add the **SlideCraft Slider** block to a page, or paste the slider's shortcode, e.g. `[slidecraft id="12"]`.
 
 == Frequently Asked Questions ==
 
-1. Which version bootstrap theme required for this plugin?
+= I used WP Smart Flexslider. What happens to my sliders? =
 
-	Bootstrap 3.3.7 or later
+When you update, each old slider is copied into SlideCraft with its images, titles, descriptions, links and settings. `[display_flexslider id="…"]` and `[display_flexslider]` keep working and show the new slider, so you don't need to edit your pages. The old slider data is left untouched.
 
-2. Its required any JS or CSS file?
+= How do I add a slider with PHP? =
 
-	No, Not needed. Its working on Bootstrap default JS and Css
-	
-	http://getbootstrap.com/javascript/#carousel
+Use `slidecraft_slider( 12 );` in your theme. Pass `false` as the third argument to get the HTML instead of printing it.
 
-== Screenshots ==
+= Which shortcode options are there? =
 
-1. screenshot-1.png 
-2. screenshot-2.png
-3. screenshot-3.png 
+`[slidecraft id="12" align="full" autoplay="off" height="480" class="my-slider"]`. All options except `id` are optional and override the slider's own settings.
 
+= Does it slow down my site? =
+
+No. The script and styles load only on pages with a slider, extra effects load only when a slider uses them, and images are lazy-loaded with responsive sizes.
+
+= Is it accessible? =
+
+Sliders use the accessible carousel pattern, can be used with a keyboard, have a pause button whenever they play automatically, pause while focused and respect the "reduce motion" setting.
 
 == Changelog ==
 
-= 1.0 =
-
-* New: Flex Slider plugin 
-
-= 1.0.1 =
-
-* Update: Some core code
-
-= 1.1 =
-
-* Add: Add vodeo documentstion
-* Update: Add code issues
-
-= 2.0 =
-* Update OOPS
-* Add multisite options
-* Add intervel and nav controls
-* Support Non Bootsrrap themes
+= 3.0.0 =
+* New: rebuilt from scratch as SlideCraft, powered by Swiper.
+* New: carousel, gallery and ticker layouts with slide, fade, coverflow, cube, flip, cards and creative effects.
+* New: video, content, testimonial, logo and dynamic posts/products slides.
+* New: text, button, image and countdown layers with entrance animations.
+* New: 12 starter templates.
+* New: SlideCraft Slider block, `[slidecraft]` shortcode and `slidecraft_slider()` function.
+* New: tablet and mobile settings, lazy loading and accessible markup.
+* Changed: requires WordPress 6.4 and PHP 7.4.
+* Existing sliders and `[display_flexslider]` shortcodes are migrated automatically.
 
 = 2.5 =
-* Update bootstrap version v3x to v3.3.7x
-* Multi slide options added.
-* Slide title, description and url fields added
-* Add or remove slide option added
-* Hove pass slider option added
-* Light weight slider
+* Previous WP Smart Flexslider release.
 
 == Upgrade Notice ==
 
-The current version of WP Smart Flexslider requires WordPress 3.0 or higher. If you use older version of WordPress, you need to upgrade WordPress first.,   
+= 3.0.0 =
+WP Smart Flexslider is now SlideCraft. Your sliders and shortcodes are migrated automatically. Requires WordPress 6.4 and PHP 7.4.
