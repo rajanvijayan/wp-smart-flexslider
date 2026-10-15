@@ -5,8 +5,8 @@
   "description": "SlideCraft – responsive slider and carousel builder (admin app, block and front-end runtime).",
   "license": "GPL-2.0-or-later",
   "scripts": {
-    "build": "wp-scripts build admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js --output-path=build",
-    "start": "wp-scripts start admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js --output-path=build",
+    "build": "wp-scripts build admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js preview=./assets/src/preview/index.js --output-path=build",
+    "start": "wp-scripts start admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js preview=./assets/src/preview/index.js --output-path=build",
     "lint:js": "wp-scripts lint-js assets/src",
     "lint:css": "wp-scripts lint-style 'assets/src/**/*.scss'",
     "test:unit": "wp-scripts test-unit-js --passWithNoTests assets/src"

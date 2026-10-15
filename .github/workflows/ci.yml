@@ -39,6 +39,9 @@ jobs:
       - name: ESLint
         run: npm run lint:js
 
+      - name: Stylelint
+        run: npm run lint:css
+
       - name: Unit tests
         run: npm run test:unit
 

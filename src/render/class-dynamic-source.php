@@ -164,13 +164,16 @@ final class Dynamic_Source {
 		$url   = get_permalink( $post );
 		$slide = $template;
 
-		$slide['id']                     = $template['id'] . '-' . $post->ID;
-		$slide['type']                   = 'content';
-		$slide['title']                  = get_the_title( $post );
-		$slide['alt']                    = $slide['title'];
-		$slide['background']['type']     = has_post_thumbnail( $post ) ? 'image' : 'color';
-		$slide['background']['image_id'] = (int) get_post_thumbnail_id( $post );
-		$slide['link']                   = array(
+		$slide['id']    = $template['id'] . '-' . $post->ID;
+		$slide['type']  = 'content';
+		$slide['title'] = get_the_title( $post );
+		$slide['alt']   = $slide['title'];
+		if ( 'image' === $template['background']['type'] ) {
+			// The featured image, or the template's colour when the post has none.
+			$slide['background']['type']     = has_post_thumbnail( $post ) ? 'image' : 'color';
+			$slide['background']['image_id'] = (int) get_post_thumbnail_id( $post );
+		}
+		$slide['link'] = array(
 			'url'     => $url,
 			'new_tab' => false,
 		);

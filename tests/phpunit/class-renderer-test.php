@@ -102,6 +102,27 @@ class Renderer_Test extends SlideCraft_TestCase {
 		$this->assertNotContains( 'thumbs', $config['modules'] );
 	}
 
+	public function test_dynamic_slides_keep_a_template_without_background() {
+		$images = $this->make_images( 1 );
+		$post   = self::factory()->post->create( array( 'post_title' => 'Headline only' ) );
+		set_post_thumbnail( $post, $images[0] );
+		$slider = Slider_Repository::create(
+			'Ticker',
+			array(
+				'slides' => array(
+					array(
+						'type'       => 'posts',
+						'background' => array( 'type' => 'none' ),
+						'source'     => array( 'post_type' => 'post' ),
+					),
+				),
+			)
+		);
+		$html = Renderer::render( $slider );
+		$this->assertStringContainsString( 'Headline only', $html );
+		$this->assertStringNotContainsString( '<img', $html );
+	}
+
 	public function test_dynamic_slides_show_only_public_posts() {
 		self::factory()->post->create(
 			array(

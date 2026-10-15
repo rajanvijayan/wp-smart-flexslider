@@ -195,6 +195,7 @@ final class Renderer {
 			'type'        => $settings['type'],
 			'effect'      => $effect,
 			'creative'    => $settings['creative'],
+			'height'      => $settings['height']['mode'],
 			'direction'   => $settings['direction'],
 			'speed'       => $settings['speed'],
 			'loop'        => $settings['loop'] && $total > 1,
@@ -234,6 +235,8 @@ final class Renderer {
 				'last'    => __( 'This is the last slide', 'wp-smart-flexslider' ),
 				/* translators: The placeholder in double braces is replaced with the slide number. */
 				'goto'    => __( 'Go to slide {{index}}', 'wp-smart-flexslider' ),
+				/* translators: Placeholders in double braces are replaced with the slide number and the number of slides. */
+				'slideOf' => __( '{{index}} of {{slidesLength}}', 'wp-smart-flexslider' ),
 				'pause'   => __( 'Pause slideshow', 'wp-smart-flexslider' ),
 				'play'    => __( 'Play slideshow', 'wp-smart-flexslider' ),
 				'close'   => __( 'Close', 'wp-smart-flexslider' ),
@@ -305,7 +308,8 @@ final class Renderer {
 				return (int) $meta['width'] . ' / ' . (int) $meta['height'];
 			}
 		}
-		return '16 / 9';
+		// No image to measure: let the slides set the height (testimonials, text slides).
+		return 'auto';
 	}
 
 	/**
@@ -488,7 +492,7 @@ final class Renderer {
 		if ( ! $embed ) {
 			return $poster;
 		}
-		return $poster . '<div class="slidecraft-slide__embed" data-embed="' . esc_url( $embed ) . '" data-title="' . esc_attr__( 'Video', 'wp-smart-flexslider' ) . '"></div>';
+		return $poster . '<div class="slidecraft-slide__embed" data-embed="' . esc_url( $embed ) . '"' . ( $video['controls'] ? ' data-controls' : '' ) . ' data-title="' . esc_attr__( 'Video', 'wp-smart-flexslider' ) . '"></div>';
 	}
 
 	/**
@@ -572,7 +576,7 @@ final class Renderer {
 		if ( 'none' !== $anim['in'] ) {
 			$style .= '--sc-anim-delay:' . $anim['delay'] . 'ms;--sc-anim-duration:' . $anim['duration'] . 'ms;';
 		}
-		$attrs = ' class="%s" style="' . esc_attr( $style ) . '"' . ( 'none' !== $anim['in'] ? ' data-anim="' . esc_attr( $anim['in'] ) . '"' : '' );
+		$attrs = ' class="%s" style="' . esc_attr( $style ) . '" data-layer-id="' . esc_attr( $layer['id'] ) . '"' . ( 'none' !== $anim['in'] ? ' data-anim="' . esc_attr( $anim['in'] ) . '"' : '' );
 
 		switch ( $layer['type'] ) {
 			case 'heading':
