@@ -1,80 +1,49 @@
 <?php
-
 /**
- * Plugin Name:       WP Smart Flexslider
- * Plugin URI:        http://flexslider.wpsmartplugin.com/
- * Description:       This is Flex Slider plugin. Its use Bootstrap 3.3.7x Themes to create easy Sliders.
- * Version:           2.5
+ * SlideCraft – Responsive Slider & Carousel.
+ *
+ * The file name is kept from WP Smart Flexslider: WordPress records active plugins by path,
+ * so renaming it would deactivate the plugin on update.
+ *
+ * @package SlideCraft
+ *
+ * @wordpress-plugin
+ * Plugin Name:       SlideCraft – Responsive Slider & Carousel
+ * Plugin URI:        https://wordpress.org/plugins/wp-smart-flexslider/
+ * Description:       Build beautiful, fast and accessible sliders and carousels with a visual builder: hero banners, product and post carousels, testimonials, logo tickers, galleries and video slides.
+ * Version:           3.0.0-dev
+ * Requires at least: 6.4
+ * Requires PHP:      7.4
  * Author:            Rajan V
- * Author URI:        https://www.fb.com/rajanit2000
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wpsmartflexslider
+ * Author URI:        https://wpsmartcare.com/
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       wp-smart-flexslider
  * Domain Path:       /languages
  */
 
-/*  Copyright 2014-2017 WP Smart Plugin
+namespace SlideCraft;
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+defined( 'ABSPATH' ) || exit;
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+define( 'SLIDECRAFT_VERSION', '3.0.0-dev' );
+define( 'SLIDECRAFT_FILE', __FILE__ );
+define( 'SLIDECRAFT_DIR', plugin_dir_path( __FILE__ ) );
+define( 'SLIDECRAFT_URL', plugin_dir_url( __FILE__ ) );
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
-
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! file_exists( SLIDECRAFT_DIR . 'vendor/autoload.php' ) ) {
+	add_action(
+		'admin_notices',
+		static function () {
+			echo '<div class="notice notice-error"><p>' . esc_html__( 'SlideCraft is missing its files. Please reinstall the plugin from WordPress.org.', 'wp-smart-flexslider' ) . '</p></div>';
+		}
+	);
+	return;
 }
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-wpsmartflexslider-activator.php
- */
-function activate_wpsmartflexslider() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wpsmartflexslider-activator.php';
-	Wpsmartflexslider_Activator::activate();
-}
+require_once SLIDECRAFT_DIR . 'vendor/autoload.php';
 
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wpsmartflexslider-deactivator.php
- */
-function deactivate_wpsmartflexslider() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wpsmartflexslider-deactivator.php';
-	Wpsmartflexslider_Deactivator::deactivate();
-}
+register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
+register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );
 
-register_activation_hook( __FILE__, 'activate_wpsmartflexslider' );
-register_deactivation_hook( __FILE__, 'deactivate_wpsmartflexslider' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wpsmartflexslider.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_wpsmartflexslider() {
-
-	$plugin = new Wpsmartflexslider();
-	$plugin->run();
-
-}
-run_wpsmartflexslider();
+Plugin::instance()->boot();

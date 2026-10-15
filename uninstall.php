@@ -1,31 +1,25 @@
 <?php
-
 /**
- * Fired when the plugin is uninstalled.
+ * Removes SlideCraft data when the plugin is deleted.
  *
- * When populating this file, consider the following flow
- * of control:
+ * Old WP Smart Flexslider posts (post type `flexslider`) are left alone: SlideCraft never changed them.
  *
- * - This method should be static
- * - Check if the $_REQUEST content actually is the plugin name
- * - Run an admin referrer check to make sure it goes through authentication
- * - Verify the output of $_GET makes sense
- * - Repeat with other user roles. Best directly by using the links/query string parameters.
- * - Repeat things for multisite. Once for a single site in the network, once sitewide.
- *
- * This file may be updated more in future version of the Boilerplate; however, this is the
- * general skeleton and outline for how the file should work.
- *
- * For more information, see the following discussion:
- * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
- *
- * @link       http://flexslider.wpsmartplugin.com/
- * @since      1.0.0
- *
- * @package    Wpsmartflexslider
+ * @package SlideCraft
  */
 
-// If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
+
+$slidecraft_ids = get_posts(
+	array(
+		'post_type'   => 'slidecraft_slider',
+		'post_status' => 'any',
+		'numberposts' => -1,
+		'fields'      => 'ids',
+	)
+);
+foreach ( $slidecraft_ids as $slidecraft_id ) {
+	wp_delete_post( $slidecraft_id, true );
+}
+foreach ( array( 'slidecraft_migrated', 'slidecraft_legacy_map', 'slidecraft_migration_notice', 'slidecraft_migrating', 'slidecraft_source_version' ) as $slidecraft_option ) {
+	delete_option( $slidecraft_option );
 }
