@@ -1,7 +1,0 @@
-#accordion{ width:100%; }
-#accordion .tab{}
-#accordion .tab label{ float:left; width:25%; display:inline-block;}
-#accordion .tab input[type="text"], #accordion .tab select, #accordion .tab .editer{ float:left; width:70%; display:inline-block;}
-#accordion .tab textarea{ width:300px;}
-.ui-state-highlight { cursor: pointer; margin-bottom: 15px; padding: 5px;}
-.nicEdit-main { background: none repeat scroll 0 0 #FFFFFF; padding: 0;}

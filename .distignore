@@ -1,0 +1,25 @@
+# Files and folders excluded from the WordPress.org SVN release.
+/.git
+/.github
+/.wordpress-org
+/node_modules
+/tests
+/vendor/bin
+/bin
+/docs
+/assets/src
+.distignore
+.gitignore
+.gitattributes
+.editorconfig
+composer.lock
+package-lock.json
+phpcs.xml.dist
+phpunit.xml.dist
+README.md
+RELEASING.md
+CLAUDE.md
+.phpunit.result.cache
+/webpack.config.js
+/.eslintrc.js
+/.stylelintrc.json

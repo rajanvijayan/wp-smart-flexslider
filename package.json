@@ -1,0 +1,25 @@
+{
+  "name": "wp-smart-flexslider",
+  "version": "3.0.0",
+  "private": true,
+  "description": "SlideCraft – responsive slider and carousel builder (admin app, block and front-end runtime).",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js preview=./assets/src/preview/index.js --output-path=build",
+    "start": "wp-scripts start admin=./assets/src/admin/index.js block=./assets/src/block/index.js frontend=./assets/src/frontend/index.js preview=./assets/src/preview/index.js --output-path=build",
+    "lint:js": "wp-scripts lint-js assets/src",
+    "lint:css": "wp-scripts lint-style 'assets/src/**/*.scss'",
+    "test:unit": "wp-scripts test-unit-js --passWithNoTests assets/src"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@wordpress/icons": "^10.32.0",
+    "swiper": "14.3.0"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "27.9.0",
+    "typescript": "~5.5.4"
+  }
+}

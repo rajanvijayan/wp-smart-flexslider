@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "slidecraft/slider",
+	"title": "SlideCraft Slider",
+	"category": "media",
+	"icon": "images-alt2",
+	"description": "Show a slider or carousel from your SlideCraft library.",
+	"keywords": [ "slider", "carousel", "slideshow", "hero", "gallery" ],
+	"textdomain": "wp-smart-flexslider",
+	"attributes": {
+		"sliderId": { "type": "number", "default": 0 },
+		"autoplay": { "type": "string", "default": "default", "enum": [ "default", "on", "off" ] },
+		"height": { "type": "number", "default": 0 }
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"anchor": true,
+		"spacing": { "margin": true }
+	},
+	"editorScript": "slidecraft-block",
+	"script": "slidecraft",
+	"style": "slidecraft"
+}
