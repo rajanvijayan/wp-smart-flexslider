@@ -31,6 +31,23 @@ final class Renderer {
 	private static $modules = array();
 
 	/**
+	 * Bundled fonts already declared on this page.
+	 *
+	 * @var string[]
+	 */
+	private static $fonts = array();
+
+	/**
+	 * Bundled fonts: setting => family name and file prefix in assets/fonts.
+	 */
+	const FONTS = array(
+		'inter'      => array( 'SlideCraft Inter', 'inter' ),
+		'montserrat' => array( 'SlideCraft Montserrat', 'montserrat' ),
+		'playfair'   => array( 'SlideCraft Playfair Display', 'playfair-display' ),
+		'lora'       => array( 'SlideCraft Lora', 'lora' ),
+	);
+
+	/**
 	 * Render a slider.
 	 *
 	 * @param Slider $slider    Slider.
@@ -92,6 +109,7 @@ final class Renderer {
 		$html .= ' role="region" aria-roledescription="' . esc_attr__( 'carousel', 'wp-smart-flexslider' ) . '" aria-label="' . esc_attr( $label ) . '"';
 		$html .= ' data-slidecraft="' . esc_attr( wp_json_encode( $runtime ) ) . '">';
 		$html .= self::responsive_css( $dom_id, $config['breakpoints'] );
+		$html .= self::font_face( $settings['style']['font'] );
 		$html .= '<div class="swiper slidecraft__viewport"><div class="swiper-wrapper slidecraft__track" aria-live="' . ( $runtime['autoplay'] ? 'off' : 'polite' ) . '">';
 		foreach ( $slides as $index => $slide ) {
 			$html .= self::slide( $slide, $index, $total, $settings );
@@ -731,10 +749,31 @@ final class Renderer {
 	}
 
 	/**
+	 * Font declarations for a bundled font, once per page.
+	 *
+	 * @param string $font Font setting.
+	 * @return string
+	 */
+	private static function font_face( $font ) {
+		if ( ! isset( self::FONTS[ $font ] ) || in_array( $font, self::$fonts, true ) ) {
+			return '';
+		}
+		self::$fonts[]         = $font;
+		list( $family, $file ) = self::FONTS[ $font ];
+		$css                   = '';
+		foreach ( array( 400, 700 ) as $weight ) {
+			$url  = SLIDECRAFT_URL . 'assets/fonts/' . $file . '-latin-' . $weight . '-normal.woff2';
+			$css .= '@font-face{font-family:"' . $family . '";font-style:normal;font-weight:' . $weight . ';font-display:swap;src:url(' . esc_url( $url ) . ') format("woff2")}';
+		}
+		return '<style>' . $css . '</style>';
+	}
+
+	/**
 	 * Reset per-request state (tests).
 	 */
 	public static function reset() {
 		self::$count   = 0;
+		self::$fonts   = array();
 		self::$modules = array();
 	}
 }

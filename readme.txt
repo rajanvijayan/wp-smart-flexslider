@@ -77,6 +77,17 @@ No. The script and styles load only on pages with a slider, extra effects load o
 
 Sliders use the accessible carousel pattern, can be used with a keyboard, have a pause button whenever they play automatically, pause while focused and respect the "reduce motion" setting.
 
+== Screenshots ==
+
+1. The builder: slide list, live preview and settings. Click a layer to edit it, or drag it to move it.
+2. Start from a blank slider or one of 12 templates.
+3. Your slider library, with the shortcode for each slider.
+4. A full-width hero slider with a fade transition.
+5. Coverflow carousel for portfolios and albums.
+6. Gallery with thumbnails and a lightbox.
+7. Blog carousel built from your latest posts.
+8. Testimonials with photo, name and star rating.
+
 == Changelog ==
 
 = 3.0.0 =
