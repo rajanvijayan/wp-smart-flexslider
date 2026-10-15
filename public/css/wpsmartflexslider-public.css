@@ -1,0 +1,53 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+.wpflex-desc h3,.wpflex-desc p,a.carousel-control{
+	color: #fff !important;
+}
+.wpflex-desc h3{
+	text-transform: uppercase;
+}
+.carousel-indicators li {
+    position: relative;
+    -ms-flex: 0 1 auto !important;
+    flex: 0 1 auto !important;
+    width: 30px !important;
+    height: 3px !important;
+    margin-right: 3px !important;
+    margin-left: 3px !important;
+    text-indent: -999px !important;
+    background-color: rgba(255,255,255,.5) !important;
+	border: none !important;
+	border-radius: 0px !important;
+}
+.carousel-indicators li::before {
+    position: absolute !important;
+    top: -10px !important;
+    left: 0 !important;
+    display: inline-block !important;
+    width: 100% !important;
+    height: 10px !important;
+    content: "" !important;
+}
+.carousel-indicators li::after {
+    position: absolute !important;
+    bottom: -10px !important;
+    left: 0 !important;
+    display: inline-block !important;
+    width: 100% !important;
+    height: 10px !important;
+    content: "" !important;
+}
+.carousel-indicators .active {
+    background-color: #fff !important;
+}
+.carousel-control.left,.carousel-control.right{
+	background: none !important;
+}
+a.left.carousel-control {
+    left: 8%;
+}
+a.right.carousel-control {
+    right: 8%;
+}

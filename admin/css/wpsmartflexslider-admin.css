@@ -1,0 +1,88 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.flexslider-wrap{ 
+}
+.flexslider-wrap::after{ 
+	content: ' ';
+	display: block;
+	clear: both;
+	height: 1px;
+	width: 100%;
+}
+.flexslider-wrap .regular-text {
+    width: 100%;
+}
+.flexslider-wrap .no-top-margin{
+	margin-top: 0px;
+}
+.flex-slide-image {
+    float: left;
+    width: 150px;
+}
+.flex-slide-image img{
+	width: 150px;
+	height: 150px;
+}
+.append_slide{
+	clear: both;
+	overflow: hidden;
+	padding: 8px;
+}
+#flexslider_add_slide_information button.handlediv {
+    display: none !important;
+}
+.flex-form-control{
+	width: 100%;
+}
+.flex-slide-inputs .flex-form-control {
+    margin-bottom: 10px;
+}
+.flex-slide-inputs textarea.flex-form-control {
+    margin-bottom: 0px;
+}
+#flexslider_add_slide_information h2,#flexslider_add_slide_information .button-link{
+	display: none;
+}
+#flexslider_add_slide_information .left h3 {
+    padding: 7px 5px;
+    line-height: 27px;
+    margin: 0;
+    font-size: 14px;
+}
+#flexslider_add_slide_information .left th {
+    padding: 0 7px;
+}
+#flexslider_add_slide_information .inside{
+	padding: 0;
+	margin: 0;
+}
+#flexslider_add_slide_information table.widefat{
+	border: none;
+}
+.slide-thum{
+	position: relative;
+    height: 150px;
+    width: 150px;
+    background-size: auto 150px;
+    background-position: center;
+    border: 1px solid #ddd;
+}
+#flex_slide span.dashicons.dashicons-images-alt2 {
+    position: relative;
+    top: 3px;
+}
+.flex-slide-inputs input,.flex-slide-inputs textarea{
+	font-size:13px;
+}
+.slide-thum span:hover {
+    cursor: pointer;
+}
+.slide-thum span {
+    color: #a00;
+}
+#post-body #normal-sortables {
+    min-height: auto;
+}
