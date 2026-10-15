@@ -10,7 +10,7 @@ Fast, accessible sliders and carousels for WordPress: hero sliders, post and pro
 
 **[WordPress.org listing](https://wordpress.org/plugins/wp-smart-flexslider/)**
 
-> **Status:** 3.0 is in development on this branch. The version on WordPress.org is still 2.5 until 3.0.0 is tagged.
+> **Status:** 3.0 is in development. The version on WordPress.org is still 2.5 until 3.0.0 is released.
 
 ![Hero slider](.github/readme/hero.jpg)
 
@@ -41,10 +41,17 @@ Fast, accessible sliders and carousels for WordPress: hero sliders, post and pro
 - ARIA carousel markup, a pause button whenever autoplay is on (WCAG 2.2.2), pause on focus and hover, keyboard support and `prefers-reduced-motion`.
 - YouTube (no-cookie) and Vimeo (do not track) players load only when their slide is shown.
 
-**Coming in 3.0**
-- A visual builder in wp-admin: slider library, live canvas, drag-and-drop slides and layers, undo/redo, autosave and revisions.
+**Visual builder**
+- Slider library with search, duplicate, export and import.
+- Live preview that uses the real front end: click a layer to edit it, drag it to move it, and switch between desktop, tablet and mobile.
+- Drag-and-drop slide list, layer list, and inspector tabs for the slide, its layers, the slider and responsive settings.
+- Autosave, undo/redo and saved versions you can restore.
 
 ## Screenshots
+
+![The SlideCraft builder](.github/readme/builder.jpg)
+
+![Start from a template](.github/readme/templates.jpg)
 
 | Coverflow portfolio | Gallery with thumbnails |
 |---|---|

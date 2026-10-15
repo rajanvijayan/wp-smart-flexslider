@@ -2,10 +2,10 @@
  * Live preview frame for the builder. The builder posts the unsaved configuration here; this page
  * renders it with the real front-end renderer and runtime, and reports clicks and layer drags back.
  *
- * Messages in:  slidecraft:render { config, title, id, slide }, slidecraft:goto { slide },
+ * Messages in:  slidecraft:render { config, title, id, slideId }, slidecraft:goto { slideId },
  *               slidecraft:select { layerId }
  * Messages out: slidecraft:ready, slidecraft:rendered { height }, slidecraft:height { height },
- *               slidecraft:slide { index }, slidecraft:select { slideId, layerId },
+ *               slidecraft:slide { slideId }, slidecraft:select { slideId, layerId },
  *               slidecraft:move { slideId, layerId, x, y }, slidecraft:error { message }
  */
 import apiFetch from '@wordpress/api-fetch';
@@ -21,6 +21,7 @@ const parentOrigin = ( () => {
 const root = document.getElementById( 'slidecraft-preview-root' );
 
 let requestId = 0;
+let navigating = false;
 let current = null;
 let selected = '';
 
@@ -94,12 +95,16 @@ async function render( data ) {
 
 	const swiper = await window.SlideCraft.mount( current );
 	if ( swiper ) {
-		if ( typeof data.slide === 'number' && data.slide > 0 ) {
-			goTo( data.slide );
+		if ( data.slideId ) {
+			goTo( data.slideId );
 		}
-		swiper.on( 'slideChange', ( s ) =>
-			send( 'slidecraft:slide', { index: s.realIndex } )
-		);
+		// Report slides the visitor moves to (not jumps made by goTo), once the move has settled.
+		swiper.on( 'slideChangeTransitionEnd', ( s ) => {
+			const active = s.slides[ s.activeIndex ];
+			if ( active && ! navigating ) {
+				send( 'slidecraft:slide', { slideId: active.dataset.slideId } );
+			}
+		} );
 	}
 	markSelected();
 	send( 'slidecraft:rendered', {
@@ -107,16 +112,41 @@ async function render( data ) {
 	} );
 }
 
-function goTo( index ) {
+/**
+ * Show a slide by its ID. Slides generated from posts carry the ID of their template slide
+ * followed by "-{post ID}"; the first of them is shown.
+ *
+ * @param {string} slideId Slide ID.
+ */
+function goTo( slideId ) {
 	const swiper = current && current.slidecraft;
-	if ( ! swiper ) {
+	if ( ! swiper || ! slideId ) {
 		return;
 	}
+	const matches = ( el ) =>
+		el.dataset.slideId === slideId ||
+		el.dataset.slideId.startsWith( slideId + '-' );
+	const active = swiper.slides[ swiper.activeIndex ];
+	if ( active && matches( active ) ) {
+		return;
+	}
+	const index = swiper.slides.findIndex( matches );
+	if ( index < 0 ) {
+		return;
+	}
+	navigating = true;
 	if ( swiper.params.loop ) {
-		swiper.slideToLoop( index, 0 );
+		swiper.slideToLoop(
+			Number( swiper.slides[ index ].dataset.swiperSlideIndex ) || 0,
+			0
+		);
 	} else {
 		swiper.slideTo( index, 0 );
 	}
+	// Transition events from this jump fire synchronously or on the next frame.
+	window.requestAnimationFrame( () =>
+		window.requestAnimationFrame( () => ( navigating = false ) )
+	);
 }
 
 window.addEventListener( 'message', ( event ) => {
@@ -133,7 +163,7 @@ window.addEventListener( 'message', ( event ) => {
 			render( data );
 			break;
 		case 'slidecraft:goto':
-			goTo( data.slide );
+			goTo( data.slideId );
 			break;
 		case 'slidecraft:select':
 			selected = data.layerId || '';

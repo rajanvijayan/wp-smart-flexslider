@@ -112,7 +112,7 @@ final class Template_Registry {
 	public static function for_js() {
 		$out = array();
 		foreach ( self::all() as $key => $template ) {
-			$thumb = 'templates/thumbs/' . $key . '.png';
+			$thumb = 'templates/thumbs/' . $key . '.jpg';
 			$out[] = array(
 				'key'         => $key,
 				'name'        => $template['name'],

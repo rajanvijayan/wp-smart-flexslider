@@ -58,7 +58,7 @@ final class Renderer {
 		$classes = array(
 			'slidecraft',
 			'slidecraft--' . $settings['type'],
-			'slidecraft--effect-' . $settings['effect'],
+			'slidecraft--effect-' . $runtime['effect'],
 			'slidecraft--height-' . $settings['height']['mode'],
 			'slidecraft--arrows-' . $settings['navigation']['arrow_style'],
 			'slidecraft--arrows-' . $settings['navigation']['arrow_position'],

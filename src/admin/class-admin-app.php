@@ -9,6 +9,7 @@ namespace SlideCraft\Admin;
 
 use SlideCraft\Capabilities;
 use SlideCraft\Render\Assets;
+use SlideCraft\Sliders\Slider_Schema;
 use SlideCraft\Templates\Template_Registry;
 
 /**
@@ -81,7 +82,32 @@ final class Admin_App {
 				'adminUrl'   => admin_url( 'admin.php?page=' . self::SLUG ),
 				'templates'  => Template_Registry::for_js(),
 				'pluginUrl'  => SLIDECRAFT_URL,
+				'defaults'   => self::defaults(),
 			)
+		);
+	}
+
+	/**
+	 * Schema defaults the builder needs to add slides and layers that match the server.
+	 *
+	 * @return array
+	 */
+	public static function defaults() {
+		$slides = array();
+		foreach ( Slider_Schema::SLIDE_TYPES as $type ) {
+			$slides[ $type ] = Slider_Schema::new_slide( $type );
+		}
+		$layers = array();
+		foreach ( Slider_Schema::LAYER_TYPES as $type ) {
+			$layers[ $type ] = Slider_Schema::new_layer( $type );
+		}
+		return array(
+			'config'     => Slider_Schema::defaults(),
+			'slides'     => $slides,
+			'layers'     => $layers,
+			'maxSlides'  => Slider_Schema::MAX_SLIDES,
+			'maxLayers'  => Slider_Schema::MAX_LAYERS,
+			'animations' => Slider_Schema::ANIMATIONS,
 		);
 	}
 

@@ -304,8 +304,28 @@ final class Sliders_Controller extends Rest_Controller {
 			'type'      => $slider->config['settings']['type'],
 			'effect'    => $slider->config['settings']['effect'],
 			'thumb'     => $image ? (string) wp_get_attachment_image_url( $image, 'medium_large' ) : '',
+			'swatch'    => self::swatch( $slider ),
 			'shortcode' => $slider->shortcode(),
 		);
+	}
+
+	/**
+	 * CSS background of the first visible colour or gradient slide, for cards without an image.
+	 *
+	 * @param Slider $slider Slider.
+	 * @return string
+	 */
+	private static function swatch( Slider $slider ) {
+		foreach ( $slider->visible_slides() as $slide ) {
+			$bg = $slide['background'];
+			if ( 'gradient' === $bg['type'] ) {
+				return 'linear-gradient(' . (int) $bg['gradient']['angle'] . 'deg,' . $bg['gradient']['from'] . ',' . $bg['gradient']['to'] . ')';
+			}
+			if ( 'color' === $bg['type'] ) {
+				return $bg['color'];
+			}
+		}
+		return '';
 	}
 
 	/**

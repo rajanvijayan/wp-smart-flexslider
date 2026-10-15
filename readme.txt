@@ -29,6 +29,12 @@ SlideCraft is the new version of **WP Smart Flexslider**. Your existing sliders 
 * Heading, text, button, image and countdown layers on a nine-point grid, with per-device visibility and entrance animations.
 * Dynamic slides from posts, pages, custom post types or WooCommerce products, filtered by category, tag, featured or sticky.
 
+= Visual builder =
+
+* A slider library with search, duplicate, export and import.
+* A live preview that uses your real site: click a layer to edit it, drag it to move it, and check desktop, tablet and mobile.
+* Drag-and-drop slides and layers, autosave, undo/redo and saved versions you can restore.
+
 = Design =
 
 * 12 starter templates: Hero Fade, Split Hero, Promo Countdown, Fullscreen Video, Blog Carousel, Product Showcase, Coverflow Portfolio, Cards Stack, Testimonials, Logo Ticker, News Ticker and Gallery + Thumbnails.
@@ -79,6 +85,7 @@ Sliders use the accessible carousel pattern, can be used with a keyboard, have a
 * New: video, content, testimonial, logo and dynamic posts/products slides.
 * New: text, button, image and countdown layers with entrance animations.
 * New: 12 starter templates.
+* New: visual builder with a live preview, drag-and-drop slides and layers, undo/redo, autosave and versions.
 * New: SlideCraft Slider block, `[slidecraft]` shortcode and `slidecraft_slider()` function.
 * New: tablet and mobile settings, lazy loading and accessible markup.
 * Changed: requires WordPress 6.4 and PHP 7.4.
