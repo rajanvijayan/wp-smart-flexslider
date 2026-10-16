@@ -31,10 +31,18 @@ class Rest_Test extends SlideCraft_TestCase {
 			'/sliders',
 			array(
 				'title'  => 'Hero',
-				'config' => array( 'slides' => array( array( 'type' => 'content' ) ) ),
+				'config' => array(
+					'slides' => array(
+						array(
+							'type'       => 'content',
+							'background' => array( 'type' => 'gradient' ),
+						),
+					),
+				),
 			)
 		);
 		$this->assertSame( 201, $created->get_status() );
+		$this->assertStringStartsWith( 'linear-gradient(135deg,', $created->get_data()['swatch'] );
 		$id = $created->get_data()['id'];
 		$this->assertSame( '[slidecraft id="' . $id . '"]', $created->get_data()['shortcode'] );
 

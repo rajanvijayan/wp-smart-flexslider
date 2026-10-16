@@ -1,16 +1,9 @@
 /**
- * SlideCraft admin app (slider library and builder).
+ * SlideCraft admin app: slider library, template picker and builder.
  */
 import { createRoot } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
-
-function App() {
-	return (
-		<div className="wrap">
-			<h1>{ __( 'SlideCraft', 'wp-smart-flexslider' ) }</h1>
-		</div>
-	);
-}
+import App from './app';
+import './admin.scss';
 
 const mount = document.getElementById( 'slidecraft-admin' );
 if ( mount ) {

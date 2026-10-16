@@ -7,6 +7,7 @@
 
 use SlideCraft\Render\Renderer;
 use SlideCraft\Sliders\Slider_Repository;
+use SlideCraft\Sliders\Slider_Schema;
 
 /**
  * @covers \SlideCraft\Render\Renderer
@@ -172,5 +173,21 @@ class Renderer_Test extends SlideCraft_TestCase {
 			)
 		);
 		$this->assertSame( '', Renderer::render( $slider ) );
+	}
+
+	public function test_bundled_fonts_are_declared_once_per_page() {
+		$config                               = Slider_Schema::defaults();
+		$config['settings']['style']['font']  = 'playfair';
+		$config['slides']                     = array( Slider_Schema::new_slide( 'content' ) );
+		$config['slides'][0]['layers'][]      = Slider_Schema::new_layer( 'heading', array( 'text' => 'Hi' ) );
+		$slider                               = Slider_Repository::create( 'Fonts', $config );
+		$first                                = Renderer::render( $slider );
+		$second                               = Renderer::render( $slider );
+		$this->assertStringContainsString( 'slidecraft--font-playfair', $first );
+		$this->assertStringContainsString( 'assets/fonts/playfair-display-latin-700-normal.woff2', $first );
+		$this->assertStringNotContainsString( '@font-face', $second );
+		foreach ( Renderer::FONTS as $font ) {
+			$this->assertFileExists( SLIDECRAFT_DIR . 'assets/fonts/' . $font[1] . '-latin-400-normal.woff2' );
+		}
 	}
 }

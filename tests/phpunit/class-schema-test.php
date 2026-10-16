@@ -109,4 +109,15 @@ class Schema_Test extends SlideCraft_TestCase {
 		);
 		$this->assertSame( 0, $config['settings']['start'] );
 	}
+
+	public function test_builder_defaults_match_the_schema() {
+		$defaults = \SlideCraft\Admin\Admin_App::defaults();
+		$this->assertSame( Slider_Schema::SLIDE_TYPES, array_keys( $defaults['slides'] ) );
+		$this->assertSame( Slider_Schema::LAYER_TYPES, array_keys( $defaults['layers'] ) );
+		foreach ( $defaults['slides'] as $type => $slide ) {
+			$this->assertSame( $type, $slide['type'] );
+			$this->assertEquals( Slider_Schema::sanitize( array( 'slides' => array( $slide ) ) )['slides'][0], $slide );
+		}
+		$this->assertSame( Slider_Schema::defaults(), $defaults['config'] );
+	}
 }

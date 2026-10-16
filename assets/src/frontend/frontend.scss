@@ -54,19 +54,19 @@ $sizes: (
 	}
 
 	&--font-inter {
-		font-family: Inter, system-ui, sans-serif;
+		font-family: "SlideCraft Inter", Inter, system-ui, sans-serif;
 	}
 
 	&--font-montserrat {
-		font-family: Montserrat, system-ui, sans-serif;
+		font-family: "SlideCraft Montserrat", Montserrat, system-ui, sans-serif;
 	}
 
 	&--font-playfair {
-		font-family: "Playfair Display", Georgia, serif;
+		font-family: "SlideCraft Playfair Display", "Playfair Display", Georgia, serif;
 	}
 
 	&--font-lora {
-		font-family: Lora, Georgia, serif;
+		font-family: "SlideCraft Lora", Lora, Georgia, serif;
 	}
 }
 
@@ -250,6 +250,41 @@ $sizes: (
 
 	to {
 		transform: scale(1.12);
+	}
+}
+
+/*
+ * Only slides that can be seen take clicks. Stacking effects keep every slide in place, so links
+ * and buttons on the slides underneath would otherwise catch clicks meant for the active one.
+ */
+.slidecraft.is-ready {
+
+	&.slidecraft--effect-fade,
+	&.slidecraft--effect-cube,
+	&.slidecraft--effect-flip,
+	&.slidecraft--effect-cards,
+	&.slidecraft--effect-creative {
+
+		.swiper-slide:not(.swiper-slide-active) {
+
+			.slidecraft-slide__layers,
+			.slidecraft-slide__link,
+			.slidecraft-layer {
+				pointer-events: none;
+			}
+		}
+	}
+
+	&.slidecraft--effect-slide,
+	&.slidecraft--effect-coverflow {
+
+		.swiper-slide:not(.swiper-slide-visible):not(.swiper-slide-active) {
+
+			.slidecraft-slide__link,
+			.slidecraft-layer {
+				pointer-events: none;
+			}
+		}
 	}
 }
 
